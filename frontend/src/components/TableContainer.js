@@ -15,36 +15,38 @@ const TableContainer = ({ columns, data }) => {
   })
 
   return (
-    // If you're curious what props we get as a result of calling our getter functions (getTableProps(), getRowProps())
-    // Feel free to use console.log()  This will help you better understand how react table works underhood.
 
     <Table {...getTableProps()}>
-        {console.log(getTableProps)}
-        {console.log(data)}
-        {console.log(getTableProps())}
-      <thead>
+    <thead>
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+        <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+            <th>
+                {column.render('Header')}
+            </th>
             ))}
-          </tr>
+        </tr>
         ))}
-      </thead>
-
-      <tbody {...getTableBodyProps()}>
+    </thead>
+    <tbody {...getTableBodyProps()}>
         {rows.map(row => {
-          prepareRow(row)
-          return (
+        prepareRow(row)
+        return (
             <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-              })}
+            {row.cells.map(cell => {
+                return (
+                <td>
+                    {cell.render('Cell')}
+                </td>
+                )
+            })}
             </tr>
-          )
+        )
         })}
-      </tbody>
+        </tbody>
     </Table>
+      
+
   )
 }
 
